@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f4ed" />
+  <meta name="description" content="Meet the polymers hiding in everyday life. Explore their properties, uses and interactive 3D molecular structures with Pico." />
+  <title>Polyverse — Everyday life, molecular magic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <div class="announcement"><span class="announcement-dot"></span> A tiny universe of materials science <span class="announcement-divider">✳</span> Made curious with Pico</div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Polyverse home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>poly<span>verse</span></span>
+    </a>
+    <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#everyday">Everyday life</a>
+      <a class="nav-link" href="#library">Polymer library</a>
+      <a class="nav-link" href="#molecule-lab">Molecule lab</a>
+    </nav>
+    <button class="header-cta" data-scroll="#everyday">Explore with Pico <span>↗</span></button>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> MATERIALS ARE EVERYWHERE</div>
+        <h1>Everyday life.<br><span>Molecular</span> magic.</h1>
+        <p class="hero-intro">From the bottle in your bag to the non-stick pan in your kitchen, polymers quietly make modern life work. Let's meet them.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#everyday">Explore everyday items <span>↗</span></a>
+          <button class="button button-soft" id="surpriseHero">Surprise me <span>✳</span></button>
+        </div>
+        <div class="hero-note"><span class="note-spark">✳</span> No lab coat needed. Just curiosity.</div>
+      </div>
+
+      <div class="hero-art" aria-label="Pico introduces the world of polymers">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="hero-orb orb-peach"></div><div class="hero-orb orb-lime"></div>
+        <div class="hero-molecule-label label-top">C₂H₄ <span>repeat unit</span></div>
+        <div class="hero-molecule-label label-bottom">Polymer chains <span>×∞</span></div>
+        <div id="heroCanvas" class="hero-canvas" aria-label="Rotating decorative molecular model"></div>
+        <div class="pico-sticker">
+          <div class="pico-speech"><strong>Hey, explorer!</strong><br>I'm Pico. What shall we discover?</div>
+          <svg class="pico-hero" viewBox="0 0 180 190" role="img" aria-label="Pico, a friendly little robot guide">
+            <ellipse cx="90" cy="178" rx="43" ry="8" fill="#162e2a" opacity=".12"/>
+            <path d="M89 13V28" stroke="#26433d" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="90" cy="10" r="7" fill="#ff8064" stroke="#26433d" stroke-width="3"/>
+            <rect x="34" y="34" width="112" height="103" rx="34" fill="#fdfbf4" stroke="#26433d" stroke-width="5"/>
+            <path d="M37 67Q21 67 22 85Q22 101 39 100" fill="#d8efc0" stroke="#26433d" stroke-width="5"/>
+            <path d="M143 67Q159 67 158 85Q158 101 141 100" fill="#d8efc0" stroke="#26433d" stroke-width="5"/>
+            <rect x="48" y="57" width="84" height="55" rx="22" fill="#263e39"/>
+            <ellipse cx="72" cy="82" rx="7" ry="9" fill="#d7f5c1"/><ellipse cx="108" cy="82" rx="7" ry="9" fill="#d7f5c1"/>
+            <path d="M80 97Q90 105 100 97" fill="none" stroke="#ff987c" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M57 139L47 159Q44 166 52 169L69 174L79 145" fill="#d8efc0" stroke="#26433d" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M123 139L133 159Q136 166 128 169L111 174L101 145" fill="#d8efc0" stroke="#26433d" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M68 137Q90 149 112 137L119 163Q90 177 61 163Z" fill="#ff987c" stroke="#26433d" stroke-width="5" stroke-linejoin="round"/>
+            <circle cx="90" cy="154" r="7" fill="#fff8ec" stroke="#26433d" stroke-width="3"/>
+            <path d="M27 45L18 35M153 45L162 35" stroke="#26433d" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="floating-chip chip-one"><span class="chip-dot coral"></span> Strong & light</div>
+        <div class="floating-chip chip-two"><span class="chip-dot green"></span> Flexible by design</div>
+      </div>
+    </section>
+
+    <section class="pico-prompt section-wrap" aria-labelledby="picoPromptTitle">
+      <div class="pico-mini-wrap">
+        <div class="pico-mini" aria-hidden="true">✦</div>
+        <div><span class="tiny-kicker">PICO WANTS TO KNOW</span><h2 id="picoPromptTitle">What do you want to explore?</h2></div>
+      </div>
+      <div class="prompt-options">
+        <button class="prompt-option" data-scroll="#everyday"><span class="prompt-icon peach">⌂</span><span><b>Things around me</b><small>Find polymers in daily objects</small></span><i>↗</i></button>
+        <button class="prompt-option" data-scroll="#library"><span class="prompt-icon green">◈</span><span><b>Meet the polymers</b><small>Explore the material library</small></span><i>↗</i></button>
+        <button class="prompt-option" id="randomFactButton"><span class="prompt-icon lilac">✳</span><span><b>Tell me a random fact</b><small>A little science surprise</small></span><i>↗</i></button>
+      </div>
+    </section>
+
+    <section class="section-wrap everyday-section" id="everyday">
+      <div class="section-heading">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> POLYMERS, IRL</div><h2>You've probably used<br>these <em>today.</em></h2></div>
+        <p>Choose an everyday object. Pico will reveal the polymer behind it, what makes it useful, and what its molecular building blocks look like.</p>
+      </div>
+      <div class="object-grid" id="objectGrid">
+        <button class="object-card object-card-large" data-polymer="pet">
+          <span class="object-tag">01 / HYDRATION</span><span class="object-illustration bottle-illustration">▥</span><span class="object-info"><b>Water bottle</b><small>Light, clear & handy</small></span><span class="card-arrow">↗</span>
+        </button>
+        <button class="object-card object-card-lime" data-polymer="ptfe">
+          <span class="object-tag">02 / KITCHEN</span><span class="object-illustration pan-illustration">◉</span><span class="object-info"><b>Non-stick pan</b><small>Food releases easily</small></span><span class="card-arrow">↗</span>
+        </button>
+        <button class="object-card object-card-lilac" data-polymer="pla">
+          <span class="object-tag">03 / PACKAGING</span><span class="object-illustration cup-illustration">♧</span><span class="object-info"><b>Compostable cup</b><small>Designed for a better end-of-life</small></span><span class="card-arrow">↗</span>
+        </button>
+        <button class="object-card object-card-blue" data-polymer="kevlar">
+          <span class="object-tag">04 / PROTECTION</span><span class="object-illustration helmet-illustration">⛑</span><span class="object-info"><b>Protective helmet</b><small>High-strength reinforcement</small></span><span class="card-arrow">↗</span>
+        </button>
+        <button class="object-card object-card-peach" data-polymer="pvc">
+          <span class="object-tag">05 / ELECTRICAL</span><span class="object-illustration cable-illustration">⌁</span><span class="object-info"><b>Wire insulation</b><small>Helps protect electric cables</small></span><span class="card-arrow">↗</span>
+        </button>
+        <button class="object-card object-card-cream" data-polymer="nylon">
+          <span class="object-tag">06 / EVERYDAY GEAR</span><span class="object-illustration fabric-illustration">▤</span><span class="object-info"><b>Backpack fabric</b><small>Tough, lightweight fibres</small></span><span class="card-arrow">↗</span>
+        </button>
+      </div>
+      <div class="selection-hint"><span class="hint-star">✳</span> Tap any object to zoom into its polymer molecule.</div>
+    </section>
+
+    <section class="fact-band section-wrap" id="factBand">
+      <div class="fact-pico" aria-hidden="true"><span>✦</span></div>
+      <div class="fact-copy"><div class="tiny-kicker">PICO'S POCKET-SIZED SCIENCE</div><p id="factText">A single polymer molecule can contain thousands of repeating units linked together, like a microscopic chain made from the same building block.</p><span id="factSource">Polymer basics</span></div>
+      <button class="fact-refresh" id="newFactButton" aria-label="Show another random fact">↻ <span>Another fact</span></button>
+    </section>
+
+    <section class="section-wrap library-section" id="library">
+      <div class="section-heading library-heading">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> THE MATERIAL LIBRARY</div><h2>Meet your <em>polymers.</em></h2></div>
+        <p>Eight materials, many different superpowers. Open a polymer to explore its properties, common applications and 3D repeat-unit model.</p>
+      </div>
+      <div class="library-toolbar"><div class="library-count"><span class="count-dot"></span> 08 MATERIALS TO DISCOVER</div><label class="search-box"><span>⌕</span><input id="polymerSearch" type="search" placeholder="Search a polymer..." aria-label="Search polymers"></label></div>
+      <div class="polymer-grid" id="polymerGrid"></div>
+      <p class="empty-state" id="emptySearch" hidden>No polymers match that search. Try another name.</p>
+    </section>
+
+    <section class="molecule-section" id="molecule-lab">
+      <div class="section-wrap molecule-inner">
+        <div class="molecule-copy">
+          <div class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> THE MOLECULE LAB</div>
+          <h2>Small building blocks.<br><em>Big impact.</em></h2>
+          <p>Polymers are made from repeating molecular units. Pick a material, rotate its model, zoom in, and see how the microscopic structure connects to the properties you notice every day.</p>
+          <button class="button button-light" id="openLabButton">Enter the molecule lab <span>↗</span></button>
+          <div class="molecule-note"><span>↻</span> Drag to rotate <span>⌕</span> Scroll to zoom</div>
+        </div>
+        <div class="lab-preview">
+          <div class="lab-preview-top"><span>LIVE MOLECULE VIEW</span><span class="live-indicator"><i></i> INTERACTIVE</span></div>
+          <div id="labPreviewCanvas" class="lab-preview-canvas"></div>
+          <div class="preview-caption"><span><b>PTFE</b><small>Polytetrafluoroethylene</small></span><span class="preview-unit">— [ CF₂ — CF₂ ] —</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-cta section-wrap">
+      <div class="bottom-cta-deco">✳</div>
+      <div><div class="eyebrow"><span class="eyebrow-line"></span> KEEP YOUR CURIOSITY GOING</div><h2>Now you see the<br><em>world differently.</em></h2><p>Look around. Pick an object. Ask what it's made of. Pico will be right here.</p></div>
+      <button class="button button-dark" data-scroll="#everyday">Explore another object <span>↗</span></button>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark"><span></span><span></span><span></span></span><span>poly<span>verse</span></span></a><p>Curiosity is a great material.</p><span>Made for curious minds <b>✳</b></span></footer>
+
+  <div class="modal-backdrop" id="polymerModal" aria-hidden="true">
+    <section class="polymer-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close polymer details">×</button>
+      <div class="modal-topline"><span class="tiny-kicker">PICO'S MATERIAL FILE</span><span class="file-number" id="modalNumber">FILE 01 / 08</span></div>
+      <div class="modal-content">
+        <div class="modal-info">
+          <div class="modal-category" id="modalCategory">EVERYDAY POLYMER</div>
+          <h2 id="modalTitle">PTFE</h2>
+          <p class="modal-fullname" id="modalFullname">Polytetrafluoroethylene</p>
+          <p id="modalDescription" class="modal-description"></p>
+          <div class="property-list" id="modalProperties"></div>
+          <div class="modal-uses"><span class="tiny-kicker">WHERE YOU'LL FIND IT</span><p id="modalUses"></p></div>
+          <div class="formula-box"><span>REPEATING UNIT</span><b id="modalFormula">[–CF₂–CF₂–]ₙ</b></div>
+          <button class="button button-dark modal-lab-button" id="modalZoomButton">Zoom into the molecule <span>↗</span></button>
+        </div>
+        <div class="modal-visual">
+          <div class="model-toolbar"><span><i class="live-dot"></i> 3D STRUCTURE</span><span class="model-help">DRAG · ROTATE · SCROLL TO ZOOM</span></div>
+          <div id="modalCanvas" class="modal-canvas"></div>
+          <div class="model-controls"><label for="zoomSlider">ZOOM</label><input type="range" id="zoomSlider" min="5" max="19" value="10" step="0.5"><button id="resetModelButton">Reset view ↺</button></div>
+          <div class="atom-legend"><span><i class="atom carbon"></i> Carbon</span><span><i class="atom oxygen"></i> Oxygen</span><span><i class="atom nitrogen"></i> Nitrogen</span><span><i class="atom halogen"></i> F / Cl</span></div>
+          <p class="model-disclaimer">Schematic ball-and-stick illustration of a representative repeating segment. Not to scale; real polymer chains are much longer and may have more complex arrangements.</p>
+        </div>
+      </div>
+      <div class="pico-modal-tip"><span class="pico-tip-face">✦</span><p><b>Pico says:</b> The repeating unit is the small pattern that gets linked over and over to build a polymer chain.</p></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
